@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "daedalus",
+  "version": "${version}",
+  "name": "Daedalus",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/daedalus/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.harismehuljic.daedalus.Daedalus"
+    ]
+  },
+  "mixins": [
+    "daedalus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
