@@ -1,6 +1,6 @@
 package com.harismehuljic.daedalus.mixin;
 
-import com.harismehuljic.daedalus.gui.DialogManager;
+import com.harismehuljic.daedalus.data.DialogManager;
 import net.minecraft.network.packet.c2s.common.CustomClickActionC2SPacket;
 import net.minecraft.server.network.ServerCommonNetworkHandler;
 import net.minecraft.server.network.ServerPlayNetworkHandler;

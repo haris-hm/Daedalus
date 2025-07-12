@@ -1,5 +1,6 @@
 package com.harismehuljic.daedalus.gui;
 
+import com.harismehuljic.daedalus.data.DialogManager;
 import com.harismehuljic.daedalus.gui.elements.actions.ActionButton;
 import com.harismehuljic.daedalus.gui.elements.body.BodyElement;
 import com.harismehuljic.daedalus.gui.elements.input.InputElement;
@@ -23,7 +24,6 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DialogBuilder {
-    private final Identifier dialogID;
     private StylableText dialogTitle;
     private boolean closeOnEscape = true;
     private boolean pauseGame = false;
@@ -35,9 +35,7 @@ public class DialogBuilder {
 
     private final HashMap<Identifier, Consumer<NbtCompound>> actions = new HashMap<>();
 
-    public DialogBuilder(Identifier dialogID) {
-        this.dialogID = dialogID;
-    }
+    public DialogBuilder() {}
 
     public DialogBuilder setTitle(StylableText title) {
         this.dialogTitle = title;
@@ -82,7 +80,7 @@ public class DialogBuilder {
 
     public Dialog build(ServerPlayerEntity spe) {
         for (Map.Entry<Identifier, Consumer<NbtCompound>> entry : this.actions.entrySet()) {
-            DialogManager.registerCallback(spe, entry.getKey(), entry.getValue());
+            DialogManager.registerCallback(entry.getKey(), spe, entry.getValue());
         }
 
         DialogCommonData data = new DialogCommonData(
