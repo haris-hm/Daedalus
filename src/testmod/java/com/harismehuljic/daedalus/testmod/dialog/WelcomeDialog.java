@@ -6,8 +6,10 @@ import com.harismehuljic.daedalus.gui.elements.body.TextBody;
 import com.harismehuljic.daedalus.gui.elements.input.ButtonSelectorInput;
 import com.harismehuljic.daedalus.gui.elements.input.TextInput;
 import com.harismehuljic.daedalus.gui.elements.text.StylableText;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.GameMode;
 
 public class WelcomeDialog extends CustomDialog {
     private final ServerPlayerEntity spe;
@@ -33,7 +35,7 @@ public class WelcomeDialog extends CustomDialog {
 
         this.addInputElement(new TextInput("name", 250, new StylableText("Enter your name:")));
 
-        this.addInputElement(new ButtonSelectorInput("button_selector", 250, new StylableText("Choose your adventure:"))
+        this.addInputElement(new ButtonSelectorInput("button_selector", 250, new StylableText("Choose your adventure"))
                 .addOption("adventure", new StylableText("Adventure Mode"))
                 .addOption("creative", new StylableText("Creative Mode"))
                 .addOption("survival", new StylableText("Survival Mode"))
@@ -42,12 +44,17 @@ public class WelcomeDialog extends CustomDialog {
         this.addActionButton(new ActionButton(
                 Identifier.of("daedalus", "welcome_action"),
                 new StylableText("Start"),
-                nbtCompound -> {
-                    String playerName = nbtCompound.getString("name").orElse("Player");
-                    if (this.spe != null) {
-                        this.spe.sendMessage(new StylableText("Welcome, " + playerName + "! Enjoy your journey with Daedalus!").setColor(0x00FF00).getText());
-                    }
-                }
+                this::callback
         ));
+    }
+
+    public void callback(NbtCompound nbtCompound) {
+        String playerName = nbtCompound.getString("name").orElse("Player");
+        String selectedMode = nbtCompound.getString("button_selector").orElse("survival");
+
+        if (this.spe != null) {
+            this.spe.sendMessage(new StylableText("Welcome, " + playerName + "! Enjoy your journey with Daedalus!").setColor(0x00FF00).getText());
+            this.spe.changeGameMode(GameMode.byId(selectedMode));
+        }
     }
 }

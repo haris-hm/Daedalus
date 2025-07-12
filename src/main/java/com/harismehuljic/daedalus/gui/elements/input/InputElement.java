@@ -52,5 +52,5 @@ public abstract class InputElement {
      */
     public DialogInput getInput() {
         return new DialogInput(this.key, this.getInputControl());
-    };
+    }
 }
