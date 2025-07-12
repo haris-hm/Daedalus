@@ -43,7 +43,7 @@ public class TestDialogCommand {
                 .addBodyElement(new TextBody(new StylableText("This is a test dialog. You can add more text here."), 100))
                 .addBodyElement(new TextBody(new StylableText("You can also add items, inputs, and buttons."), 100))
                 .addBodyElement(new ItemBody(new ItemStack(Items.ACACIA_BOAT), true, true, 100, 100).setDescription(new TextBody(new StylableText("This is an acacia boat item."), 100)))
-                .addInput(new NumberInput("test_number_input", 100, new StylableText("NUMBER"),0,13))
+                .addInputElement(new NumberInput("test_number_input", 100, new StylableText("NUMBER"),0,13))
                 .addActionButton(new ActionButton(Identifier.of("daedalus", "test_action_two"), new StylableText("Test Action"), (nbtCompound -> {
                     assert spe != null;
                     spe.sendMessage(new StylableText("Test action executed!").setColor(0xA4031C).getText());
