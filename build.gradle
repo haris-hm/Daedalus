@@ -10,13 +10,20 @@ base {
     archivesName = project.archives_base_name
 }
 
-loom {
-    splitEnvironmentSourceSets()
+sourceSets {
+    testmod {
+        compileClasspath += main.compileClasspath
+        runtimeClasspath += main.runtimeClasspath
+    }
+}
 
-    mods {
-        "daedalus" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
+loom {
+    runs {
+        testmodServer {
+            server()
+            ideConfigGenerated project.rootProject == project
+            name = "Test Mod Server"
+            source sourceSets.testmod
         }
     }
 }
@@ -37,6 +44,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    testmodImplementation sourceSets.main.output
 }
 
 processResources {

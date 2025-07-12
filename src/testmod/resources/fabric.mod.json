@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "testmod",
+  "version": "1.0.0",
+  "name": "Daedalus Test Mod",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.harismehuljic.daedalus.testmod.TestMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "*"
+  }
+}

@@ -1,6 +1,5 @@
 package com.harismehuljic.daedalus.gui;
 
-import com.harismehuljic.daedalus.data.DialogInputDefinition;
 import com.harismehuljic.daedalus.gui.elements.actions.ActionButton;
 import com.harismehuljic.daedalus.gui.elements.body.BodyElement;
 import com.harismehuljic.daedalus.gui.elements.input.InputElement;
@@ -55,10 +54,6 @@ public abstract class CustomDialog {
 
     protected void addInputElement(InputElement inputElement) {
         this.inputElements.add(inputElement);
-    }
-
-    protected void addInputElements(DialogInputDefinition inputDefinition) {
-        inputDefinition.getInputElements().forEach(this::addInputElement);
     }
 
     protected void addActionButton(ActionButton actionButton) {

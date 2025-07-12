@@ -8,12 +8,6 @@
   "contact": {},
   "license": "All-Rights-Reserved",
   "icon": "assets/daedalus/icon.png",
-  "environment": "server",
-  "entrypoints": {
-    "main": [
-      "com.harismehuljic.daedalus.Daedalus"
-    ]
-  },
   "mixins": [
     "daedalus.mixins.json"
   ],

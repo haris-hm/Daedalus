@@ -1,4 +1,4 @@
-package com.harismehuljic.daedalus.commands;
+package com.harismehuljic.daedalus.testmod.dialog;
 
 import com.harismehuljic.daedalus.gui.CustomDialog;
 import com.harismehuljic.daedalus.gui.elements.actions.ActionButton;
@@ -32,8 +32,9 @@ public class WelcomeDialog extends CustomDialog {
                 Identifier.of("daedalus", "welcome_action"),
                 new StylableText("Start"),
                 nbtCompound -> {
+                    String playerName = nbtCompound.getString("name").orElse("Player");
                     if (this.spe != null) {
-                        this.spe.sendMessage(new StylableText("Welcome, " + nbtCompound.getString("name") + "! Enjoy your journey with Daedalus!").setColor(0x00FF00).getText());
+                        this.spe.sendMessage(new StylableText("Welcome, " + playerName + "! Enjoy your journey with Daedalus!").setColor(0x00FF00).getText());
                     }
                 }
         ));
